@@ -8,18 +8,18 @@
 </head>
 <body>
     <form action="/" method="post">
-        <fieldset>
+        <fieldset disabled="disabled">
             <legend>Upload CSV file</legend>
             <label for="csv">Upload CSV file:</label>
             <input type="file" name="csv" id="csv" placeholder="Upload CSV"><br/>
             <input type="submit" value="submit">
         </fieldset>
     </form>
-    <form action="/" method="post">
-        <fieldset disabled="disabled">
+    <form action="/api/sucessful" method="post">
+        <fieldset>
             <legend>input CSV value:</legend>
             <label for="MSISDN">MSISDN :</label>
-            <input type="text" name="MSISDN" id="MSISDN" pattern="^(\\+(234)[0-9]{10})$" placeholder="+234XXXXXXXXXX"><br/>
+            <input type="text" name="MSISDN" id="MSISDN" pattern="^((234)[0-9]{10})$" placeholder="+234XXXXXXXXXX"><br/>
             <label for="operator">Operator :</label>
             <input type="text" name="operator" id="MSISDN"><br/>
             <label for="categories">Categories :</label>

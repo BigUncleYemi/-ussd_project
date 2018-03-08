@@ -5,7 +5,8 @@ var Blacklist = new Schema({
     MSISDN: {
         type: Number,
         required: true,
-        unique: true
+        unique: true,
+        index:true
     },
     Operator: {
         type: String,
@@ -14,7 +15,8 @@ var Blacklist = new Schema({
     Categories: String,
     date_updated: {
         type: Date,
-        default: Date()
+        default: Date.now,
+        lowercase:true
     }
 });
 

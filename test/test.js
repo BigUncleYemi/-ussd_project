@@ -34,7 +34,7 @@ describe('# Api Test', function () {
         it(' should get manually inputted details', function (done) {
             request.post('/api/sucessful').send(blacklist).end(function (err, res) {
                 expect(res.statusCode).to.be.equal(200);
-                expect(res.body.blacklist.Categories).to.be.equal('Health');
+                expect(res.body).to.be.equal('object');
                 blacklist = res.body;
                 done();
             })
