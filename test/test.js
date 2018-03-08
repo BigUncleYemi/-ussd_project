@@ -10,7 +10,9 @@ var expect = chai.expect;
 describe('# Api Test', function () {
 
     var blacklist = {
-        MSISDN : ''
+        MSISDN : '2349058165478',
+        Operator : 'glo',
+        Categories : 'Health'
     }
     describe('# Render form page', function () {
         after(function (done) {
@@ -24,6 +26,19 @@ describe('# Api Test', function () {
             })
         })
     })
-    describe('# Post CSV manually inputed ')
+    describe('# Post CSV manually inputed', function () {
+        after(function (done) {
+            server.close();
+            done();
+        });
+        it(' should get manually inputted details', function (done) {
+            request.post('/api/sucessful').send(blacklist).end(function (err, res) {
+                expect(res.statusCode).to.be.equal(200);
+                expect(res.body.blacklist.Categories).to.be.equal('Health');
+                blacklist = res.body;
+                done();
+            })
+        })
+    })
 
 })

@@ -7,12 +7,15 @@ var Blacklist = new Schema({
         required: true,
         unique: true
     },
-    operator: {
+    Operator: {
         type: String,
         required: true
     },
-    categories: String,
-    date_updated: Date
+    Categories: String,
+    date_updated: {
+        type: Date,
+        default: Date()
+    }
 });
 
 var Admin = new Schema({

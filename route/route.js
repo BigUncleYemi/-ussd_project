@@ -6,7 +6,7 @@ var bodyparser = require('body-parser'),
     });
 var model = require('../model/model');
 var mongoose = require('mongoose');
-// Blacklist = mongoose.model('Blacklist'),
+var Blacklist = mongoose.model('Blacklist');
 var Admin = mongoose.model('Admin');
 var fs = require('fs');
 
@@ -19,5 +19,11 @@ module.exports = function (app) {
         var index = fs.readFileSync(__dirname + '/index.html', 'utf-8');
         res.end(index);
     });
-    
+
+    app.post('/api/sucessful', function (req,res) {
+        var new_blacklist = new Blacklist(res.body);
+        new_blacklist.save(function (err , list){
+            
+        })
+    })
 }
