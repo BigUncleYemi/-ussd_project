@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Blacklist api upload form</title>
+    <title>Blacklist api | Upload form</title>
 </head>
 <body>
     <form action="/" method="post">
@@ -19,7 +19,7 @@
         <fieldset disabled="disabled">
             <legend>input CSV value:</legend>
             <label for="MSISDN">MSISDN :</label>
-            <input type="text" name="MSISDN" id="MSISDN"><br/>
+            <input type="text" name="MSISDN" id="MSISDN" pattern="^(\\+(234)[0-9]{10})$" placeholder="+234XXXXXXXXXX"><br/>
             <label for="operator">Operator :</label>
             <input type="text" name="operator" id="MSISDN"><br/>
             <label for="categories">Categories :</label>

@@ -19,4 +19,5 @@ module.exports = function (app) {
         var index = fs.readFileSync(__dirname + '/index.html', 'utf-8');
         res.end(index);
     });
+    
 }

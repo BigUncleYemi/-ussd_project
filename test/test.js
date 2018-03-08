@@ -8,7 +8,11 @@ var request = require("supertest").agent(server);
 var expect = chai.expect;
 
 describe('# Api Test', function () {
-    describe('# render form page', function () {
+
+    var blacklist = {
+        MSISDN : ''
+    }
+    describe('# Render form page', function () {
         after(function (done) {
             server.close();
             done();
@@ -20,4 +24,6 @@ describe('# Api Test', function () {
             })
         })
     })
+    describe('# Post CSV manually inputed ')
+
 })
