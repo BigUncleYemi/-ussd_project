@@ -4,7 +4,7 @@
   "description": "an api that collect data of blacklisted numbers ",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --exit"
+    "test": "mocha --timeout 100000 --exit"
   },
   "repository": {
     "type": "git",

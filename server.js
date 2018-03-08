@@ -4,8 +4,8 @@ var bodyparser = require('body-parser');
 var app = express();
 var route = require('./route/route');
 
-var port = process.env.PORT || (process.argv[2] || 3000);
-port = (typeof port === "number") ? port : 3000;
+var port = process.env.PORT || (process.argv[2] || 3010);
+port = (typeof port === "number") ? port : 3010;
 
 var server = app.listen(port);
 console.log("Application started. Listening on port:" + port);

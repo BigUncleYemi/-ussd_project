@@ -15,17 +15,17 @@ module.exports = function (app) {
 
     app.post('/api/sucessful', urlencodedparser, function (req, res) {
         var new_blacklist = new Blacklist(req.body);
-        new_blacklist.save(function (err, list) {
+        new_blacklist.save(function (err, results) {
             if (err) {
                 err
             }
             res.json({
-                list
-                // message: "Sucessful."
+                results,
+                message: "Sucessful."
             });
             console.log(req.body)
         })
-    })
+    });
 
     app.get('/api', function (req, res) {
         res.writeHeader(200, ({
