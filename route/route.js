@@ -13,17 +13,23 @@ var fs = require('fs');
 
 module.exports = function (app) {
 
-    app.post('/api/sucessful', urlencodedparser, function (req, res) {
+    app.post('/api/sucessful', urlencodedparser, function (req, res, next) {
         var new_blacklist = new Blacklist(req.body);
         new_blacklist.save(function (err, results) {
             if (err) {
-                err
-            }
+                console.log(`error - ${JSON.stringify(err)}`);
+                next(err)
+                
+            } else{
+            Blacklist.count((err, count)=> {
+                console.log(`Count - ${count}`);
+            });          console.log(`results - ${JSON.stringify(results)}`);
             res.json({
                 results,
                 message: "Sucessful."
             });
             console.log(req.body)
+        }
         })
     });
 

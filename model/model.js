@@ -8,11 +8,11 @@ var Blacklist = new Schema({
         unique: true,
         index:true
     },
-    Operator: {
+    operator: {
         type: String,
         required: true
     },
-    Categories: String,
+    categories: String,
     date_updated: {
         type: Date,
         default: Date.now,

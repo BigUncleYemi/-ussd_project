@@ -26,5 +26,14 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}));
 
 route(app);
+app.use(function(err, req, res, next){
+  console.log(`Error -> ${err}`);
+  res.send(`There is a problem somewhere but we are on it`);
+});
+
+app.use(function (req, res) {
+  var four0four = fs.readFileSync(__dirname + '/404.html', 'utf-8')
+  res.status(404).send(four0four)
+});
 
 require('./model/model');

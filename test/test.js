@@ -11,8 +11,8 @@ describe('# Api Test', function () {
 
     var blacklist = {
         'MSISDN' : '2349058165478',
-        'Operator' : 'glo',
-        'Categories' : 'Health'
+        'operpator' : 'glo',
+        'categories' : 'Health'
     }
     describe('# Render form page', function () {
         after(function (done) {
@@ -31,12 +31,22 @@ describe('# Api Test', function () {
             server.close();
             done();
         });
-        it('shoul post form details', function(done){
+        it('should post form details', function(done){
             request.post('/api/sucessful').send(blacklist).end(function(err,res){
                 expect(res.statusCode).to.be.equal(200);
                 expect(res.body.message).to.be.equal('Sucessful.')
                 done();
             })
+        })
+    });
+
+    describe('# UPload all CSV file and read it', function(){
+        after(function(done){
+            server.close();
+            done();
+        });
+        it('should recieve csv file and upload its', function (done) {
+            request.post('').send().e
         })
     })
 
