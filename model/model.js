@@ -32,6 +32,15 @@ var Admin = new Schema({
     }
 })
 
+Blacklist.post('save', function(error, doc, next) {
+    if (error.name === 'MongoError' && error.code === 11000) {
+      next(new Error('There was a duplicate key error'));
+    } else {
+      next(error);
+    }
+  });
+  
+
 var Blacklist = mongoose.model('Blacklist', Blacklist);
 var Admin = mongoose.model('Admin', Admin);
 
