@@ -5,8 +5,8 @@ var app = express();
 var route = require('./route/route');
 var fs = require('fs');
 
-var port = process.env.PORT || (process.argv[2] || 3010);
-port = (typeof port === "number") ? port : 3010;
+var port = process.env.PORT || (process.argv[2] || 3000);
+port = (typeof port === "number") ? port : 3000;
 
 var server = app.listen(port);
 console.log("Application started. Listening on port:" + port);
