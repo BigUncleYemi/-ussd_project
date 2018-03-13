@@ -10,7 +10,7 @@ var expect = chai.expect;
 describe('# Api Test', function () {
 
     var blacklist = {
-        'MSISDN': '2349058165478',
+        'MSISDN': '2340058165478',
         'operator': 'glo',
         'categories': 'Health'
     }
@@ -42,20 +42,6 @@ describe('# Api Test', function () {
             })
         })
     });
-
-    // describe('# UPload all CSV file and read it', function(){
-    //     after(function(done){
-    //         server.close();
-    //         done();
-    //     });
-    //     it('should recieve csv file and upload its', function (done) {
-    //         request.post('/api/upload').send('test').end(function(err,res){
-    //             expect(res.statusCode).to.be.equal(200);
-    //             done();
-    //         })
-    //     })
-    // })
-
     describe('# Get the full Blacklist', function () {
         after(function (done) {
             server.close();
@@ -70,5 +56,46 @@ describe('# Api Test', function () {
             })
         })
     })
-
+    describe('# Get Operator info from Blacklist', function () {
+        after(function (done) {
+            server.close();
+            done();
+        })
+        it('should get a Blacklist Operator info', function(done){
+            request.get('/api/search/operator?operator' + blacklist.operator).end(function (err,res) {
+                expect(res.statusCode).to.be.equal(200);
+                expect(res.body.message).to.be.equal('search completed');
+                console.log(res.body);
+                done();
+            })
+        })
+    })
+    describe('# Get MSISDN info from Blacklist', function () {
+        after(function (done) {
+            server.close();
+            done();
+        })
+        it('should get a Blacklist MSISDN info', function(done){
+            request.get('/api/search/MSISDN?MSISDN' + blacklist.MSISDN).end(function (err,res) {
+                expect(res.statusCode).to.be.equal(200);
+                expect(res.body.message).to.be.equal('search completed');
+                console.log(res.body);
+                done();
+            })
+        })
+    })
+    describe('# Get Categories info from Blacklist', function () {
+        after(function (done) {
+            server.close();
+            done();
+        })
+        it('should get a Blacklist Categories info', function(done){
+            request.get('/api/search/categories?categories' + blacklist.categories).end(function (err,res) {
+                expect(res.statusCode).to.be.equal(200);
+                expect(res.body.message).to.be.equal('search completed');
+                console.log(res.body);
+                done();
+            })
+        })
+    })
 })

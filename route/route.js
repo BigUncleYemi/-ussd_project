@@ -25,7 +25,7 @@ module.exports = function (app) {
         });
         form.on('file', function (name, file) {
             console.log('Uploaded ' + file.name);
-            var data = fs.readFileSync(path.join(__dirname + '/uploads/' + file.name ), {
+            var data = fs.readFileSync(path.join(__dirname + '/uploads/' + file.name), {
                 encoding: 'utf8'
             });
             var options = {
@@ -34,13 +34,13 @@ module.exports = function (app) {
             };
             var conv = csvjson.toSchemaObject(data, options);
             console.log(conv)
-    
+
             for (var i = 0; i < conv.length;) {
                 var new_blacklist = new Blacklist(conv[i]);
                 new_blacklist.save(function (err, results) {
                     if (err) {
                         console.log(`error - ${JSON.stringify(err)}`);
-    
+
                     } else {
                         Blacklist.count((err, count) => {
                             console.log(`Count - ${count}`);
@@ -54,15 +54,6 @@ module.exports = function (app) {
                     }
                 })
                 i++
-                // if(err){
-                //     res.json({
-                //         status:false,
-                //         error:'csv not sucessfully uploaded'
-                //     })
-                // }
-                // res.json({
-                //     message: 'uploaded csv into database'
-                // })
             }
         });
         form.on('error', function (err) {
@@ -126,5 +117,62 @@ module.exports = function (app) {
                 })
             }
         })
+    })
+    app.get('/api/search/operator', function (req, res) {
+        Blacklist.find({
+            operator: req.query.operator
+        }, function (err, results) {
+            if (err) {
+                res.json({
+                    status: false,
+                    error: 'could not find results'
+                })
+            } else {
+                res.json({
+                    results,
+                    message: 'search completed'
+                })
+            }
+        }).count((err, count) => {
+            console.log(`Count - ${count}`);
+        });
+    })
+    app.get('/api/search/MSISDN', function (req, res) {
+        Blacklist.find({
+            MSISDN: req.query.MSISDN
+        }, function (err, results) {
+            if (err) {
+                res.json({
+                    status: false,
+                    error: 'could not find results'
+                })
+            } else {
+                res.json({
+                    results,
+                    message: 'search completed'
+                })
+            }
+        }).count((err, count) => {
+            console.log(`Count - ${count}`);
+        });
+    })
+    app.get('/api/search/categories', function (req, res) {
+        Blacklist.find({
+            categories: req.query.categories
+        }, function (err, results) {
+            if (err) {
+                res.json({
+                    status: false,
+                    error: 'could not find results'
+                })
+            } else {
+                res.json({
+                    results,
+                    message: 'search completed'
+                })
+            }
+        }).count((err, count) => {
+            console.log(`Count - ${count}`);
+        });
     })
 }

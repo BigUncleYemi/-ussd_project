@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Search | Blacklist</title>
 </head>
+
 <body>
     <form action="/api/search/list" method="get">
         <input type="submit" value="show full Blacklist">
     </form>
+    <form action="/api/search/MSISDN" method="get">
+        MSISDN :
+        <input type="search" name="MSISDN" id="MSISDN">
+        <input type="submit" value="search">
+    </form>
+    <form action="/api/search/operator" method="get">
+        Operator :
+        <input type="text" name="operator" id="operator">
+        <input type="submit" value="search">
+    </form>
+    <form action="/api/search/categories" method="get">
+        Categories
+        <input type="search" name="categories" id="categories">
+        <input type="submit" value="search">
+    </form>
 </body>
+
 </html>
