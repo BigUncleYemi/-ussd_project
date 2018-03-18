@@ -1,24 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Blacklist api | Upload form</title>
+    <title>Update | Blacklist</title>
 </head>
-
 <body>
-
-    <form action="/api/upload" enctype="multipart/form-data" method="post">
-        <input type="file" name="upload" multiple>
-        <input type="submit" value="Upload">
-    </form>
-    <form action="/api/sucessful" method="post">
+    <form action="/api/edit/MSISDN" method="put">
         <fieldset>
             <legend>input CSV value:</legend>
             <label for="MSISDN">MSISDN :</label>
-            <input type="text" name="MSISDN" id="MSISDN" pattern="^((234)[0-9]{10})$" placeholder="+234XXXXXXXXXX">
+            <input type="text" name="MSISDN" id="MSISDN" pattern="^((234)[0-9]{10})$" placeholder="234XXXXXXXXXX" value="+">
             <br/>
             <label for="operator">Operator :</label>
             <input type="text" name="operator" id="MSISDN">
@@ -27,10 +20,7 @@
             <input type="text" name="categories" id="categories">
             <br/>
             <input type="submit" value="submit">
-        </fieldset>
+        </fieldset>cd
     </form>
-    <a href="/api/delete">delete</a>
-    <a href="/api/search">Find</a>
 </body>
-
 </html>

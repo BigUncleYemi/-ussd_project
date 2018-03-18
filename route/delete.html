@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Search | Blacklist</title>
+</head>
+
+<body>
+    <form action="/api/delete/list" method="delete">
+        <input type="submit" value="show full Blacklist">
+    </form>
+    <form action="/api/delete/:MSISDN" method="post">
+        Delect MSISDN :
+        <input type="search" name="MSISDN" id="MSISDN">
+        <input type="submit" value="search">
+    </form>
+</body>
+
+</html>

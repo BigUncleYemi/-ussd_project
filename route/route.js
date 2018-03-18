@@ -103,6 +103,14 @@ module.exports = function (app) {
         res.end(search);
     });
 
+    app.get('/api/delete', function (req, res) {
+        res.writeHeader(200, ({
+            'Content-Type': 'text/html'
+        }));
+        var deleted = fs.readFileSync(__dirname + '/delete.html', 'utf-8');
+        res.end(deleted);
+    });
+
     app.get('/api/search/list', function (req, res) {
         Blacklist.find({}, function (err, results) {
             if (err) {
@@ -174,5 +182,19 @@ module.exports = function (app) {
         }).count((err, count) => {
             console.log(`Count - ${count}`);
         });
+    })
+    app.delete('/api/delete/:id',function(req , res){
+        Blacklist.findByIdAndRemove({_id:req.params.id},function (err, results) {
+            if (err){
+                res.json({
+                    err
+                })
+            }else{
+                res.json({
+                    results,
+                    message:"list deleted "
+                })
+            }
+        })
     })
 }
