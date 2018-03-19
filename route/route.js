@@ -85,8 +85,6 @@ module.exports = function (app) {
         })
     });
 
-
-
     app.get('/api', function (req, res) {
         res.writeHeader(200, ({
             'Content-Type': 'text/html'
@@ -183,16 +181,32 @@ module.exports = function (app) {
             console.log(`Count - ${count}`);
         });
     })
-    app.delete('/api/delete/:id',function(req , res){
-        Blacklist.findByIdAndRemove({_id:req.params.id},function (err, results) {
-            if (err){
+
+    app.put('/api/update/:MSISDN', function (req, res) {
+        Blacklist.findOneAndUpdate({ MSISDN: req.params.MSISDN }, { categories: req.body.categories ,operator: req.body.operator }, function (err, results) {
+            if (err) {
+                res.json({
+                    err,
+                    error: 'update failed'
+                })
+            } else {
+                res.json({
+                    results,
+                    message: 'Update Sucessful'
+                })
+            }
+        })
+    })
+    app.delete('/api/delete/:MSISDN', function (req, res) {
+        Blacklist.findOneAndRemove({ MSISDN: req.params.MSISDN }, function (err, results) {
+            if (err) {
                 res.json({
                     err
                 })
-            }else{
+            } else {
                 res.json({
                     results,
-                    message:"list deleted "
+                    message: "Contact deleted "
                 })
             }
         })
