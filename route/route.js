@@ -183,7 +183,7 @@ module.exports = function (app) {
     })
 
     app.put('/api/update/:MSISDN', function (req, res) {
-        Blacklist.findOneAndUpdate({ MSISDN: req.params.MSISDN }, { categories: req.body.categories ,operator: req.body.operator }, function (err, results) {
+        Blacklist.findOneAndUpdate({ MSISDN: req.params.MSISDN }, { categories: req.body.categories , operator: req.body.operator }, function (err, results) {
             if (err) {
                 res.json({
                     err,
