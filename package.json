@@ -2,7 +2,7 @@
   "name": "blacklist",
   "version": "1.0.0",
   "description": "an api that collect data of blacklisted numbers ",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "mocha --timeout 100000 --exit"
   },

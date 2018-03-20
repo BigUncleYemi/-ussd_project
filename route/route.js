@@ -44,6 +44,7 @@ module.exports = function (app) {
                     } else {
                         Blacklist.count((err, count) => {
                             console.log(`Count - ${count}`);
+                            res.json(count)
                         });
                         console.log(`results - ${JSON.stringify(results)}`);
                         res.json({
@@ -85,30 +86,6 @@ module.exports = function (app) {
         })
     });
 
-    app.get('/api', function (req, res) {
-        res.writeHeader(200, ({
-            'Content-Type': 'text/html'
-        }));
-        var index = fs.readFileSync(__dirname + '/index.html', 'utf-8');
-        res.end(index);
-    });
-
-    app.get('/api/search', function (req, res) {
-        res.writeHeader(200, ({
-            'Content-Type': 'text/html'
-        }));
-        var search = fs.readFileSync(__dirname + '/search.html', 'utf-8');
-        res.end(search);
-    });
-
-    app.get('/api/delete', function (req, res) {
-        res.writeHeader(200, ({
-            'Content-Type': 'text/html'
-        }));
-        var deleted = fs.readFileSync(__dirname + '/delete.html', 'utf-8');
-        res.end(deleted);
-    });
-
     app.get('/api/search/list', function (req, res) {
         Blacklist.find({}, function (err, results) {
             if (err) {
@@ -122,6 +99,8 @@ module.exports = function (app) {
                     message: 'list found'
                 })
             }
+        }).count((err, count) => {
+            console.log(`Count - ${count}`)
         })
     })
     app.get('/api/search/operator', function (req, res) {
@@ -140,8 +119,8 @@ module.exports = function (app) {
                 })
             }
         }).count((err, count) => {
-            console.log(`Count - ${count}`);
-        });
+            console.log(`Count - ${count}`)
+        })
     })
     app.get('/api/search/MSISDN', function (req, res) {
         Blacklist.find({
@@ -159,7 +138,7 @@ module.exports = function (app) {
                 })
             }
         }).count((err, count) => {
-            console.log(`Count - ${count}`);
+            console.log(`Count - ${count}`)
         });
     })
     app.get('/api/search/categories', function (req, res) {
@@ -178,12 +157,12 @@ module.exports = function (app) {
                 })
             }
         }).count((err, count) => {
-            console.log(`Count - ${count}`);
+            console.log(`Count - ${count}`)
         });
     })
 
     app.put('/api/update/:MSISDN', function (req, res) {
-        Blacklist.findOneAndUpdate({ MSISDN: req.params.MSISDN }, { categories: req.body.categories , operator: req.body.operator }, function (err, results) {
+        Blacklist.findOneAndUpdate({ MSISDN: req.params.MSISDN }, { categories: req.body.categories, operator: req.body.operator }, function (err, results) {
             if (err) {
                 res.json({
                     err,
@@ -197,7 +176,7 @@ module.exports = function (app) {
             }
         })
     })
-    app.delete('/api/delete/:MSISDN', function (req, res) {
+    app.delete('/api/delete/MSISDN/:MSISDN', function (req, res) {
         Blacklist.findOneAndRemove({ MSISDN: req.params.MSISDN }, function (err, results) {
             if (err) {
                 res.json({
@@ -209,6 +188,77 @@ module.exports = function (app) {
                     message: "Contact deleted "
                 })
             }
-        })
+        }).count((err, count) => {
+            console.log(`Count - ${count}`)
+        });
+    })
+
+    app.delete('/api/delete/operators/:operator', function (req, res) {
+        Blacklist.find({ operator: req.params.operator }, function (err, results) {
+            if (err) {
+                err
+            }
+            Blacklist.remove(function (err, results) {
+                if (err) {
+                    res.json({
+                        status: false,
+                        error: "delete unsucessful."
+                    });
+                }
+                return res.json({
+                    results,
+                    status: true,
+                    message: 'delete sucessful.'
+                })
+            })
+        }).count((err, count) => {
+            console.log(`Count - ${count}`)
+        });
+    })
+
+    app.delete('/api/delete/categories/:categories', function (req, res) {
+        Blacklist.find({ categories: req.params.categories }, function (err, results) {
+            if (err) {
+                err
+            }
+            Blacklist.remove(function (err, results) {
+                if (err) {
+                    res.json({
+                        status: false,
+                        error: "delete unsucessful."
+                    });
+                }
+                return res.json({
+                    results,
+                    status: true,
+                    message: 'delete sucessful.'
+                })
+            })
+        }).count((err, count) => {
+            console.log(`Count - ${count}`)
+        });
+    })
+
+    app.delete('/api/delete/list', function (req, res) {
+        Blacklist.find({}, function (err, results) {
+            if (err) {
+                err
+            }
+            Blacklist.remove(function (err, results) {
+                if (err) {
+                    res.json({
+                        status: false,
+                        error: "delete unsucessful."
+                    });
+                }
+                return res.json({
+                    results,
+                    status: true,
+                    message: 'delete sucessful.'
+                })
+            })
+        }).count((err, count) => {
+            console.log(`Count - ${count}`)
+        });
     })
 }
