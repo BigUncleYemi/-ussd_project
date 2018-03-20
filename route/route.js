@@ -74,30 +74,6 @@ module.exports = function (app) {
         })
     });
 
-    app.get('/api', function (req, res) {
-        res.writeHeader(200, ({
-            'Content-Type': 'text/html'
-        }));
-        var index = fs.readFileSync(__dirname + '/index.html', 'utf-8');
-        res.end(index);
-    });
-
-    app.get('/api/search', function (req, res) {
-        res.writeHeader(200, ({
-            'Content-Type': 'text/html'
-        }));
-        var search = fs.readFileSync(__dirname + '/search.html', 'utf-8');
-        res.end(search);
-    });
-
-    app.get('/api/delete', function (req, res) {
-        res.writeHeader(200, ({
-            'Content-Type': 'text/html'
-        }));
-        var deleted = fs.readFileSync(__dirname + '/delete.html', 'utf-8');
-        res.end(deleted);
-    });
-
     app.get('/api/search/list', function (req, res) {
         Blacklist.find({}, function (err, results) {
             if (err) {
