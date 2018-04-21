@@ -2,13 +2,15 @@
   "name": "blacklist",
   "version": "1.0.0",
   "description": "an api that collect data of blacklisted numbers ",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "mocha --exit"
+    "start": "nodemon node server",
+    "test": "mocha --timeout 100000 --exit"
+    
   },
   "repository": {
     "type": "git",
-    "url": "www.github.com/biguncleyemi/ussd_project.git "
+    "url": "http://www.github.com/BigUncleYemi/ussd_project.git"
   },
   "keywords": [
     "blacklist",
@@ -18,9 +20,19 @@
   "author": "Olayemi Oyebanji Afolarin",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "csvjson": "^5.0.0",
+    "ejs": "^2.5.7",
     "express": "^4.16.2",
-    "mongoose": "^5.0.7"
+    "express-session": "^1.15.6",
+    "formidable": "^1.2.0",
+    "mongoose": "^5.0.7",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "chai": "^4.1.2",
